@@ -7,5 +7,6 @@
 void listaLibros();
 void listaClientes();
 void nuevoCliente();
+void nuevoLibro();
 
 #endif

@@ -65,8 +65,12 @@ void listaClientes()
 
 void nuevoCliente()
 {
+	char *str;
+	int d;
+	char p[30];
 	FILE *f;
-	f = fopen("clientes.txt", "r");
+
+	f = fopen("clientes.txt", "a");
 
 	if(f==NULL)
 	{
@@ -75,5 +79,61 @@ void nuevoCliente()
 
 	
   	printf("Introduzca nombre del cliente: \n");
+ 	gets(p);	
+ 	fprintf(f, "%s\n", p);
+
+	printf("Introduzca el apellido del cliente:\n");
+	gets(p);
+	fprintf(f, "%s\n", p);
+
+	printf("Introduzca la edad del cliente:\n");
+	gets(p);
+	fprintf(f, "%s\n", p);
+
+	printf("Introduzca el grado que cursa el cliente:\n");
+	gets(p);
+	fprintf(f, "%s\n", p);
+
+	
+
+	printf("El cliente ya ha sido añadido al sistema, gracias!!\n");
+	printf("\n");
+
+	fclose(f);
+  	
+}
+
+void nuevoLibro()
+{
+	char *str;
+	int d;
+	char p[30];
+	FILE *f;
+
+	f = fopen("libros.txt", "a");
+
+	if(f==NULL)
+	{
+		printf("Archivo no encontrado\n");
+	}
+
+	
+  	printf("Introduzca titulo del cliente: \n");
+ 	gets(p);	
+ 	fprintf(f, "%s\n", p);
+
+	printf("Introduzca el autor del cliente:\n");
+	gets(p);
+	fprintf(f, "%s\n", p);
+
+	printf("Introduzca el genero del cliente:\n");
+	gets(p);
+	fprintf(f, "%s\n", p);
+	
+
+	printf("El libro ya ha sido añadido al sistema, gracias!!\n");
+	printf("\n");
+
+	fclose(f);
   	
 }

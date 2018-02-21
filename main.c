@@ -20,7 +20,7 @@ int menuEmpleado(void)
 		printf("1. Lista de libros disponibles para alquilar\n");
 		printf("2. Lista de clientes de la biblioteca de Deusto\n");
 		printf("3. Nuevo cliente\n");
-		printf("4. \n");
+		printf("4. Nuevo libro \n");
 		printf("5. \n");
 		printf("6. EXIT\n");
 		printf("\n");
@@ -57,9 +57,15 @@ int main(int argc, char **argv, char **vectorUsuarios)
 
 					listaClientes();
 					break;
+
 				case 3:
 
 					nuevoCliente();
+					break;
+
+				case 4:
+
+					nuevoLibro();
 					break;
 
 				
