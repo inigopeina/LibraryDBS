@@ -1,0 +1,79 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+#define MAX_LENGHT 50
+
+void clear_if_needed(char *str)
+{
+	if (str[strlen(str) - 1] != '\n')
+	{
+		int c;    
+    	while ( (c = getchar()) != EOF && c != '\n');
+    }
+}
+void listaLibros()
+{
+	FILE *f;
+	f = fopen("libros.txt", "r");
+
+	if(f==NULL)
+	{
+		printf("Archivo no encontrado\n");
+	}
+	
+	char str[70];
+  	int d;
+
+  	printf("LIBROS DISPONIBLES PARA ALQUILAR: \n");
+  	while(fgets(str, 100, f)) 
+  	{ 
+  		//recorrer hasta que lea un 0
+      
+   		printf("%s", str);
+
+    	clear_if_needed(str); //siempre antes del siguiente fgets
+ 	}
+
+}
+
+void listaClientes()
+{
+	FILE *f;
+	f = fopen("clientes.txt", "r");
+
+	if(f==NULL)
+	{
+		printf("Archivo no encontrado\n");
+	}
+	
+	char str[70];
+  	int d;
+
+  	printf("Clientes de la biblioteca: \n");
+  	while(fgets(str, 100, f)) 
+  	{ 
+  		//recorrer hasta que lea un 0
+      
+   		printf("%s", str);
+
+    	clear_if_needed(str); //siempre antes del siguiente fgets
+ 	}
+
+
+}
+
+void nuevoCliente()
+{
+	FILE *f;
+	f = fopen("clientes.txt", "r");
+
+	if(f==NULL)
+	{
+		printf("Archivo no encontrado\n");
+	}
+
+	
+  	printf("Introduzca nombre del cliente: \n");
+  	
+}
