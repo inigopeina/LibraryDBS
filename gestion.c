@@ -62,7 +62,73 @@ void listaClientes()
 
 
 }
+void comprobarCliente(char* d)
+{
+	FILE *f;
+	f = fopen("clientes.txt", "r");
 
+	if(f==NULL)
+	{
+		printf("Archivo no encontrado\n");
+	}
+
+
+	char str[70];
+  	/*int a;*/
+  	char cliente[90];
+  	int i=0; int tmp1=0; int tmp2=0;
+  	int contador=0;
+
+  
+	while (feof(f)==0)
+
+      {
+            fgets(cliente,100,f);
+
+            for(i=0;i<strlen(cliente);i++)
+
+            {
+
+               if (d[0]==cliente[i])
+
+               {
+
+                  tmp1=0;
+
+                  tmp2=i;
+
+                  while ((d[tmp1]==cliente[tmp2])&&(tmp2<strlen(cliente))&&(tmp1!=strlen(d)))
+
+                  {
+                        tmp1++;
+
+                        tmp2++;
+
+                        if (tmp1==strlen(d))
+
+                           contador++;
+                  }
+               }
+            }
+      }
+
+     /* printf("La palabra se repite en el texto %d veces",konta);*/
+
+      if(contador>0)
+      {
+      	printf("Este cliente ya esta registrado en la base de datos de la universidad\n");
+      	printf("Por favor, vuelva a intentarlo e introdduzca el DNI del nuevo cliente""\n");
+      	gets(d);
+      	comprobarCliente(d);
+      }
+
+      getchar();
+
+
+	fclose(f);
+
+
+}
 void nuevoCliente()
 {
 	char *str;
@@ -80,19 +146,24 @@ void nuevoCliente()
 	
   	printf("Introduzca nombre del cliente: \n");
  	gets(p);	
- 	fprintf(f, "%s\n", p);
+ 	fprintf(f, "Nombre: %s \n", p);
 
 	printf("Introduzca el apellido del cliente:\n");
 	gets(p);
-	fprintf(f, "%s\n", p);
+	fprintf(f, "Apellido: %s\n", p);
 
 	printf("Introduzca la edad del cliente:\n");
 	gets(p);
-	fprintf(f, "%s\n", p);
+	fprintf(f, "Edad: %s\n", p);
+
+	printf("Introduzca el numero de DNI del cliente\n");
+	gets(p);
+	comprobarCliente(p);
+	fprintf(f, "DNI: %s\n", p);
 
 	printf("Introduzca el grado que cursa el cliente:\n");
 	gets(p);
-	fprintf(f, "%s\n", p);
+	fprintf(f, "Curso: %s\n", p);
 
 	
 
@@ -102,7 +173,73 @@ void nuevoCliente()
 	fclose(f);
   	
 }
+void comprobarLibro(char* c)
+{
+	FILE *f;
+	f = fopen("libros.txt", "r");
 
+	if(f==NULL)
+	{
+		printf("Archivo no encontrado\n");
+	}
+
+
+	char str[70];
+  	int d;
+  	char libro[90];
+  	int i=0; int tmp1=0; int tmp2=0;
+  	int contador=0;
+
+  
+	while (feof(f)==0)
+
+      {
+            fgets(libro,100,f);
+
+            for(i=0;i<strlen(libro);i++)
+
+            {
+
+               if (c[0]==libro[i])
+
+               {
+
+                  tmp1=0;
+
+                  tmp2=i;
+
+                  while ((c[tmp1]==libro[tmp2])&&(tmp2<strlen(libro))&&(tmp1!=strlen(c)))
+
+                  {
+                        tmp1++;
+
+                        tmp2++;
+
+                        if (tmp1==strlen(c))
+
+                           contador++;
+                  }
+               }
+            }
+      }
+
+     /* printf("La palabra se repite en el texto %d veces",konta);*/
+
+      if(contador>0)
+      {
+      	printf("Este Libro ya esta registrado en la base de datos de la universidad\n");
+      	printf("Por favor, vuelva a intentarlo e introdduzca el titulo del nuevo libro""\n");
+      	gets(c);
+      	comprobarLibro(c);
+      }
+
+      getchar();
+
+
+	fclose(f);
+
+
+}
 void nuevoLibro()
 {
 	char *str;
@@ -118,18 +255,22 @@ void nuevoLibro()
 	}
 
 	
-  	printf("Introduzca titulo del cliente: \n");
+  	printf("Introduzca titulo del nuevo libro: \n");
  	gets(p);	
- 	fprintf(f, "%s\n", p);
+ 	fprintf(f, "Titulo: %s\n", p);
 
-	printf("Introduzca el autor del cliente:\n");
+	printf("Introduzca el autor del libro:\n");
 	gets(p);
-	fprintf(f, "%s\n", p);
+	fprintf(f, "Autor: %s\n", p);
 
-	printf("Introduzca el genero del cliente:\n");
+	printf("Introduzca el genero del libro:\n");
 	gets(p);
-	fprintf(f, "%s\n", p);
+	fprintf(f, "Genero: %s\n", p);
 	
+	printf("Introduzca el codigo del libro\n");
+	gets(p);
+	comprobarLibro(p);
+	fprintf(f, "Codigo: %s\n",p);
 
 	printf("El libro ya ha sido añadido al sistema, gracias!!\n");
 	printf("\n");
@@ -137,3 +278,4 @@ void nuevoLibro()
 	fclose(f);
   	
 }
+

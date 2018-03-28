@@ -1,0 +1,10 @@
+Nombre: A 
+Apellido: b
+Edad: qw
+DNI: 1234
+Curso: 
+Nombre: r 
+Apellido: r
+Edad: 5
+DNI: 456
+Curso: 35t
