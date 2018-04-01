@@ -14,13 +14,14 @@ int menuUsuario(void)
 	do
 	{
 		
-		printf("Seleccione el modo en el que desee entrar\n");
+		printf("Usted ha entrado como USUARIO\n");
 		printf("\n");
 		
 		
 		printf("1. Lista de libros disponibles para alquilar\n");
-		printf("2. \n");
-		printf("3. EXIT\n");
+		printf("2. Alquilar libro\n");
+		printf("3. Comprar libro%s\n");
+		printf("4. EXIT\n");
 		printf("\n");
 		
 		fgets(str, 50, stdin);
@@ -28,7 +29,7 @@ int menuUsuario(void)
 		len = sscanf(str, "%d", &option); 
 		printf("\n");
 
-	}while ((len == 0 && str[0] != '3') || (len > 0 && (option > 3 || option < 1)));
+	}while ((len == 0 && str[0] != '4') || (len > 0 && (option > 4 || option < 1)));
 	
 	return (str[0] == '1')?0:option;
 
