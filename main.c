@@ -129,6 +129,11 @@ int main(int argc, char **argv, char **vectorUsuarios)
 						listaLibros();				
 						break;
 
+					case 2:
+
+						alquilarLibro();
+						break;
+
 					default:
 					return -1;
 					break;

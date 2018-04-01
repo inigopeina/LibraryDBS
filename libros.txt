@@ -1,0 +1,12 @@
+Titulo: a
+Autor: a
+Genero: a
+Codigo: 123
+Titulo: s
+Autor: s
+Genero: s
+Codigo: 345
+Titulo: g
+Autor: g
+Genero: g
+Codigo: 

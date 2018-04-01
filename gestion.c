@@ -37,6 +37,31 @@ void listaLibros()
 
 }
 
+void listaLibrosAlquilados()
+{
+	FILE *f;
+	f = fopen("librosalquilados.txt", "r");
+
+	if(f==NULL)
+	{
+		printf("Archivo no encontrado\n");
+	}
+	
+	char str[70];
+  	int d;
+
+  	printf("LIBROS QUE HA ALQUILADO: \n");
+  	while(fgets(str, 100, f)) 
+  	{ 
+  		//recorrer hasta que lea un 0
+      
+   		printf("%s", str);
+
+    	clear_if_needed(str); //siempre antes del siguiente fgets
+ 	}
+
+}
+
 void listaClientes()
 {
 	FILE *f;
@@ -173,7 +198,70 @@ void nuevoCliente()
 	fclose(f);
   	
 }
-void comprobarLibro(char* c)
+void compararLibro(char* c)
+{
+
+	FILE *f;
+	f = fopen("libros.txt", "r");
+
+	if(f==NULL)
+	{
+		printf("Archivo no encontrado\n");
+	}
+
+
+	char str[70];
+  	int d;
+  	char libro[90];
+  	int i=0; int tmp1=0; int tmp2=0;
+  	int contador=0;
+
+  
+	while (feof(f)==0)
+
+      {
+            fgets(libro,100,f);
+
+            for(i=0;i<strlen(libro);i++)
+
+            {
+
+               if (c[0]==libro[i])
+
+               {
+
+                  tmp1=0;
+
+                  tmp2=i;
+
+                  while ((c[tmp1]==libro[tmp2])&&(tmp2<strlen(libro))&&(tmp1!=strlen(c)))
+
+                  {
+                        tmp1++;
+
+                        tmp2++;
+
+                        if (tmp1==strlen(c))
+
+                           contador++;
+                  }
+               }
+            }
+      }
+
+
+      	if(contador>0)
+      	{
+      		printf("Libro alquilado!!!\n");
+      	}
+      	else
+      	{
+      		printf("Vuelva a intentarlo \n");
+	      	gets(c);
+	      	compararLibro(c);
+      	}
+ }
+void comprobarLibroExiste(char* c)
 {
 	FILE *f;
 	f = fopen("libros.txt", "r");
@@ -230,7 +318,7 @@ void comprobarLibro(char* c)
       	printf("Este Libro ya esta registrado en la base de datos de la universidad\n");
       	printf("Por favor, vuelva a intentarlo e introdduzca el titulo del nuevo libro""\n");
       	gets(c);
-      	comprobarLibro(c);
+      	comprobarLibroExiste(c);
       }
 
       getchar();
@@ -269,7 +357,7 @@ void nuevoLibro()
 	
 	printf("Introduzca el codigo del libro\n");
 	gets(p);
-	comprobarLibro(p);
+	comprobarLibroExiste(p);
 	fprintf(f, "Codigo: %s\n",p);
 
 	printf("El libro ya ha sido añadido al sistema, gracias!!\n");
@@ -277,5 +365,32 @@ void nuevoLibro()
 
 	fclose(f);
   	
+}
+
+void alquilarLibro()
+{
+		char str[MAX_LENGHT];
+		char c[30];
+		
+
+
+		FILE *f;
+
+		f = fopen("librosalquilados.txt", "a");
+
+		if(f==NULL)
+		{
+			printf("Archivo no encontrado\n");
+		}
+		listaLibros();
+		printf("Introduzca el codigo del libro que desea alquilar: \n");
+		gets(c);
+
+		compararLibro(str);
+	 	fprintf(f, "Codigo del libro: %s\n", c);
+	 	listaLibrosAlquilados();
+
+
+
 }
 
