@@ -60,6 +60,8 @@ void listaLibrosAlquilados()
     	clear_if_needed(str); //siempre antes del siguiente fgets
  	}
 
+ 	fclose(f);
+
 }
 
 void listaClientes()
@@ -242,24 +244,22 @@ void compararLibro(char* c)
                         tmp2++;
 
                         if (tmp1==strlen(c))
+                        {
+                           contador=contador++;
+                        }
 
-                           contador++;
                   }
                }
             }
       }
 
 
+
       	if(contador>0)
       	{
       		printf("Libro alquilado!!!\n");
       	}
-      	else
-      	{
-      		printf("Vuelva a intentarlo \n");
-	      	gets(c);
-	      	compararLibro(c);
-      	}
+      	
  }
 void comprobarLibroExiste(char* c)
 {
@@ -305,7 +305,7 @@ void comprobarLibroExiste(char* c)
 
                         if (tmp1==strlen(c))
 
-                           contador++;
+                           contador=contador++;
                   }
                }
             }
@@ -373,7 +373,6 @@ void alquilarLibro()
 		char c[30];
 		
 
-
 		FILE *f;
 
 		f = fopen("librosalquilados.txt", "a");
@@ -382,12 +381,16 @@ void alquilarLibro()
 		{
 			printf("Archivo no encontrado\n");
 		}
+
 		listaLibros();
 		printf("Introduzca el codigo del libro que desea alquilar: \n");
 		gets(c);
 
 		compararLibro(str);
+
 	 	fprintf(f, "Codigo del libro: %s\n", c);
+	 	fclose(f);
+
 	 	listaLibrosAlquilados();
 
 
