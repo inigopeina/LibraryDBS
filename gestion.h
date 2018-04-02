@@ -13,5 +13,6 @@ void compararLibro();
 void comprobarCliente();
 void alquilarLibro();
 void listaLibrosAlquilados();
+void eliminarLibro();
 
 #endif

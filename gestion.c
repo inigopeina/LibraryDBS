@@ -257,9 +257,14 @@ void compararLibro(char* c)
 
       	if(contador>0)
       	{
-      		printf("Libro alquilado!!!\n");
+      		printf("Codigo correcto!!\n");
       	}
-      	
+      	else
+      	{
+      		printf("Vuelva a intentarlo:\n");
+      		gets(c);
+      		compararLibro();
+      	}
  }
 void comprobarLibroExiste(char* c)
 {
@@ -396,4 +401,56 @@ void alquilarLibro()
 
 
 }
+
+void eliminarLibro()
+{
+
+			system("cls");
+            FILE *f, *fa;
+           	FILE *fileptr1, *fileptr2;
+		    char filename[40];
+		    char ch;
+		    int delete_line, temp = 1;
+            
+       		fileptr1=fopen("Libros.txt", "r");
+
+        	listaLibros();
+
+            char codigo[20];
+            printf("Intoduzca el codigo del libro:\n");
+            gets(codigo);
+            compararLibro(codigo);
+
+
+		    printf(" \n Enter line number of the line to be deleted:");
+		    scanf("%d", &delete_line);
+		    //open new file in write mode
+		    fileptr2 = fopen("replica.txt", "w");
+		    ch = 'A';
+		    while (ch != EOF)
+		    {
+		        ch = getc(fileptr1);
+		        //except the line to be deleted
+		        if (temp != delete_line)
+		        {
+		            //copy all lines in file replica.txt
+		            putc(ch, fileptr2);
+		        }
+		        if (ch == '\n')
+		        {
+		            temp++;
+		        }
+		    }
+		    fclose(fileptr1);
+		    fclose(fileptr2);
+		    remove(filename);
+		    //rename the file replica.c to original name
+		    rename("replica.txt", filename);
+		    listaLibrosReplica();
+		   	putc(ch, fileptr1);
+
+		    fclose(fileptr1);
+
+}
+
 
