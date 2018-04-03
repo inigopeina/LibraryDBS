@@ -20,7 +20,7 @@ int menuUsuario(void)
 		
 		printf("1. Lista de libros disponibles para alquilar\n");
 		printf("2. Alquilar libro\n");
-		printf("3. Eliminar libro%s\n");
+		printf("3. Eliminar libro\n");
 		printf("4. EXIT\n");
 		printf("\n");
 		

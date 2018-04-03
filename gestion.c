@@ -36,7 +36,30 @@ void listaLibros()
  	}
 
 }
+void listaLibrosReplica()
+{
+	
+	FILE *f;
+	f = fopen("replica.txt", "r");
 
+	if(f==NULL)
+	{
+		printf("Archivo no encontrado\n");
+	}
+	
+	char str[70];
+  	int d;
+
+  	printf("LIBROS QUE QUEDAN: \n");
+  	while(fgets(str, 100, f)) 
+  	{ 
+  		//recorrer hasta que lea un 0
+      
+   		printf("%s", str);
+
+    	clear_if_needed(str); //siempre antes del siguiente fgets
+ 	}
+}
 void listaLibrosAlquilados()
 {
 	FILE *f;
@@ -263,7 +286,7 @@ void compararLibro(char* c)
       	{
       		printf("Vuelva a intentarlo:\n");
       		gets(c);
-      		compararLibro();
+      		compararLibro(c);
       	}
  }
 void comprobarLibroExiste(char* c)
