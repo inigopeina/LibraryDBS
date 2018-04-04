@@ -225,7 +225,7 @@ void nuevoCliente()
 }
 void compararLibro(char* c)
 {
-	 
+
 	FILE *f;
 	f = fopen("libros.txt", "r");
 
@@ -247,14 +247,14 @@ void compararLibro(char* c)
       {
             fgets(libro,100,f);
 
-            
             for(i=0;i<strlen(libro);i++)
 
             {
 
                if (c[0]==libro[i])
+
                {
-               		printf("entro aqui\n");
+
                   tmp1=0;
 
                   tmp2=i;
@@ -262,35 +262,46 @@ void compararLibro(char* c)
                   while ((c[tmp1]==libro[tmp2])&&(tmp2<strlen(libro))&&(tmp1!=strlen(c)))
 
                   {
+
                         tmp1++;
 
                         tmp2++;
 
+
                         if (tmp1==strlen(c))
                         {
-                           contador=contador++;
+                           contador=contador+1;
                         }
-
                   }
                }
             }
       }
 
 
-
       	if(contador>0)
       	{
-      		printf("Codigo correcto!!\n");
-      	}
-      	else
-      	{	//provisional
-      		
-      		//provisional
-      		//printf("Vuelva a intentarlo:\n");
-      		//gets(c);
-      		//compararLibro(c);
+      		printf("Codigo correcto!\n");
 
+      		FILE *f;
+
+			f = fopen("librosalquilados.txt", "a");
+
+			if(f==NULL)
+			{
+				printf("Archivo no encontrado\n");
+			}
+
+			fprintf(f, "Codigo del libro: %s\n", c);
+	 		fclose(f);
+	    }
+      	else
+      	{
+      		printf("Vuelva a intentarlo \n");
+	      	gets(c);
+	      	compararLibro(c);
       	}
+
+      fclose(f);
  }
 void comprobarLibroExiste(char* c)
 {
@@ -407,27 +418,12 @@ void alquilarLibro()
 		char str[MAX_LENGHT];
 		char c[30];
 		
-
-		FILE *f;
-
-		f = fopen("librosalquilados.txt", "a");
-
-		if(f==NULL)
-		{
-			printf("Archivo no encontrado\n");
-		}
-
 		listaLibros();
 		printf("Introduzca el codigo del libro que desea alquilar: \n");
 		gets(c);
-		compararLibro(str);
 
-	 	fprintf(f, "Codigo del libro: %s\n", c);
-	 	fclose(f);
-
+		compararLibro(c);
 	 	listaLibrosAlquilados();
-
-
 
 }
 
