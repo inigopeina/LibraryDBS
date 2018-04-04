@@ -1,0 +1,5 @@
+Nombre: I¤igo 
+Apellido: Peinado
+Edad: 22
+DNI: 72606311A
+Curso: 4

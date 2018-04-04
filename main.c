@@ -31,7 +31,7 @@ int menuUsuario(void)
 
 	}while ((len == 0 && str[0] != '4') || (len > 0 && (option > 4 || option < 1)));
 	
-	return (str[0] == '1')?0:option;
+	return (str[0] == '4')?0:option;
 
 }
 
@@ -73,56 +73,25 @@ int main(int argc, char **argv, char **vectorUsuarios)
 	int option;
 	int total = 0;
 	char n[30];
-	char c[30]; 	
-
+	char c[30]; 
+	int log = 0;	
+	do
+	{
+	 printf("\n\n\n\nBIENVENIDO A LA BIBLIOTECA DE DEUSTO\n");
 	 printf("Escriba el nombre de usuario por favor\n");
 	 gets(n);
 	 printf("Escriba su contrasena\n");
 	 gets(c);
-	 if(strcmp(n, "empleado")==0 && strcmp(c, "passempleado")==0)
-	 {
-		do
-		{
-			option = menuEmpleado();
-		
-			switch (option)
-			{
-				case 1: 
-
-					listaLibros();				
-					break;
-
-				case 2:
-
-					listaClientes();
-					break;
-
-				case 3:
-
-					nuevoCliente();
-					break;
-
-				case 4:
-
-					nuevoLibro();
-					break;
-
-				
-
-				default:
-					return -1;
-					break;
-		
-			}
-
-		}while(option!=0);	
-	 }
-		if(strcmp(n, "usuario")==0 && strcmp(c, "passusuario")==0)
-		{
+	
+	
+		if(strcmp(n, "empleado")==0 && strcmp(c, "empleado")==0)
+		 {
+		 	log = 1;
 			do
 			{
-				option = menuUsuario();
-			
+				option = menuEmpleado();
+				
+
 				switch (option)
 				{
 					case 1: 
@@ -132,22 +101,68 @@ int main(int argc, char **argv, char **vectorUsuarios)
 
 					case 2:
 
-						alquilarLibro();
+						listaClientes();
 						break;
 
 					case 3:
 
-						eliminarLibro();
+						nuevoCliente();
 						break;
-						
+
+					case 4:
+
+						nuevoLibro();
+						break;
+
+					
 
 					default:
-					return -1;
-					break;
-
+						return -1;
+						break;
+			
 				}
-			}while(option!=0);
-		}
+
+			}while(option!=0);	
+		 }else
+		 if(strcmp(n, "usuario")==0 && strcmp(c, "usuario")==0)
+			{
+				log = 1;
+				do
+				{
+
+					option = menuUsuario();
+
+				
+					switch (option)
+					{
+						case 1: 
+							
+							listaLibros();				
+							break;
+
+						case 2:
+
+							alquilarLibro();
+							break;
+
+						case 3:
+
+							eliminarLibro();
+							break;
+							
+
+						default:
+						return -1;
+						break;
+
+					}
+				}while(option!=0);
+			}else
+			{	 
+			log = 0;	
+			printf("usuario/contraseña incorrecta\n");
+			}
+	}while(log == 0);
 
 }
 

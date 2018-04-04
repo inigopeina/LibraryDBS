@@ -225,7 +225,7 @@ void nuevoCliente()
 }
 void compararLibro(char* c)
 {
-
+	 
 	FILE *f;
 	f = fopen("libros.txt", "r");
 
@@ -247,14 +247,14 @@ void compararLibro(char* c)
       {
             fgets(libro,100,f);
 
+            
             for(i=0;i<strlen(libro);i++)
 
             {
 
                if (c[0]==libro[i])
-
                {
-
+               		printf("entro aqui\n");
                   tmp1=0;
 
                   tmp2=i;
@@ -283,10 +283,13 @@ void compararLibro(char* c)
       		printf("Codigo correcto!!\n");
       	}
       	else
-      	{
-      		printf("Vuelva a intentarlo:\n");
-      		gets(c);
-      		compararLibro(c);
+      	{	//provisional
+      		
+      		//provisional
+      		//printf("Vuelva a intentarlo:\n");
+      		//gets(c);
+      		//compararLibro(c);
+
       	}
  }
 void comprobarLibroExiste(char* c)
@@ -382,6 +385,10 @@ void nuevoLibro()
 	printf("Introduzca el genero del libro:\n");
 	gets(p);
 	fprintf(f, "Genero: %s\n", p);
+
+	printf("Introduzca el stock del libro:\n");
+	gets(p);
+	fprintf(f, "Stock: %s\n", p);
 	
 	printf("Introduzca el codigo del libro\n");
 	gets(p);
@@ -413,7 +420,6 @@ void alquilarLibro()
 		listaLibros();
 		printf("Introduzca el codigo del libro que desea alquilar: \n");
 		gets(c);
-
 		compararLibro(str);
 
 	 	fprintf(f, "Codigo del libro: %s\n", c);
