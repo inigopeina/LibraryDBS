@@ -401,10 +401,22 @@ void nuevoLibro()
 	gets(p);
 	fprintf(f, "Stock: %s\n", p);
 	
-	printf("Introduzca el codigo del libro\n");
-	gets(p);
-	comprobarLibroExiste(p);
-	fprintf(f, "Codigo: %s\n",p);
+	do
+	{
+
+		printf("Introduzca el codigo del libro\n");
+		gets(p);
+		
+		if(strlen(p)==3)
+		{
+			comprobarLibroExiste(p);
+			fprintf(f, "Codigo: %s\n",p);
+		}
+		else
+		{
+			printf("vuelva a intentarlo\n");
+		}	
+	}while(strlen(p)!=3);
 
 	printf("El libro ya ha sido añadido al sistema, gracias!!\n");
 	printf("\n");
@@ -419,11 +431,29 @@ void alquilarLibro()
 		char c[30];
 		
 		listaLibros();
+		do
+		{
 		printf("Introduzca el codigo del libro que desea alquilar: \n");
 		gets(c);
 
-		compararLibro(c);
-	 	listaLibrosAlquilados();
+	
+		if(strlen(c)==3)
+		{
+		
+			compararLibro(c);
+			listaLibrosAlquilados();
+
+	 
+	 	}
+	 	else
+	 	{
+	 		printf("Vuelva a intentarlo\n");
+	 		
+	 		
+	 	}
+		
+	
+	 }while(strlen(c)!=3);
 
 }
 

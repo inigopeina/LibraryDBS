@@ -2,4 +2,9 @@ Titulo: El se¤or de los anillos
 Autor: JRR Tolkien
 Genero: Aventura
 Stock: 4
-Codigo: 1
+Codigo: 123
+Titulo: El niño con el pijama de rayas
+Autor: Prueba
+Genero: Prueba
+Stock: 5
+Codigo:124
