@@ -246,7 +246,7 @@ void compararLibro(char* c)
 
       {
             fgets(libro,100,f);
-
+            
             for(i=0;i<strlen(libro);i++)
 
             {
@@ -277,10 +277,11 @@ void compararLibro(char* c)
             }
       }
 
-
+      	
       	if(contador>0)
       	{
       		printf("Codigo correcto!\n");
+      		printf("El libro ha sido alquilado con exito\n\n");
 
       		FILE *f;
 
@@ -293,6 +294,8 @@ void compararLibro(char* c)
 
 			fprintf(f, "Codigo del libro: %s\n", c);
 	 		fclose(f);
+
+	 		
 	    }
       	else
       	{
@@ -457,7 +460,7 @@ void alquilarLibro()
 
 }
 
-void eliminarLibro()
+/*void eliminarLibro()
 {
 
 			system("cls");
@@ -506,6 +509,161 @@ void eliminarLibro()
 
 		    fclose(fileptr1);
 
+}*/
+
+int lineofID(char* c)
+{
+
+	FILE *f;
+	f = fopen("libros.txt", "r");
+
+	if(f==NULL)
+	{
+		printf("Archivo no encontrado\n");
+	}
+
+
+	char str[70];
+  	int d;
+  	char libro[90];
+  	int i=0; int tmp1=0; int tmp2=0;
+  	int contador=0;
+  	int lineNo = 0;
+  	int aux = 0;
+
+  
+	while (feof(f)==0)
+
+      {
+      	lineNo++;
+            fgets(libro,100,f);
+            
+            for(i=0;i<strlen(libro);i++)
+
+            {
+
+               if (c[0]==libro[i])
+
+               {
+
+                  tmp1=0;
+
+                  tmp2=i;
+
+                  while ((c[tmp1]==libro[tmp2])&&(tmp2<strlen(libro))&&(tmp1!=strlen(c)))
+
+                  {
+
+                        tmp1++;
+
+                        tmp2++;
+
+
+                        if (tmp1==strlen(c))
+                        {
+                           contador=contador+1;
+                           aux = lineNo;
+                        }
+                  }
+               }
+            }
+      }
+
+
+      	if(contador>0)
+      	{
+      		printf("Codigo correcto!\n");
+      		return aux;
+
+	 		
+	    }
+      	else
+      	{
+      		printf("Vuelva a intentarlo \n");
+	      	gets(c);
+	      	lineofID(c);
+      	}
+
+ }
+
+
+//le tengo que pasar el numero
+void eliminarLibro1()
+{
+
+
+int idl1, idl2, idl3, idl4, idLine;
+
+
+	
+
+	int lineN = 0;
+	char str[100];
+	FILE *f, *fa;
+		char c[30];
+		
+		listaLibros();
+		do
+		{
+		printf("Introduzca el codigo del libro que desea ELIMINAR: \n");
+		gets(c);
+
+	
+		if(strlen(c)==3)
+		{
+		
+			idLine = lineofID(c);
+			
+	 
+	 	}
+	 	else
+	 	{
+	 		printf("Vuelva a intentarlo\n");
+	 		
+	 		
+	 	}
+		
+	
+	 }while(strlen(c)!=3);
+
+	 
+
+	idl1 = idLine-1;
+	idl2 = idLine-2;
+	idl3 = idLine-3;
+	idl4 = idLine-4;
+	
+	
+	
+	f = fopen("libros.txt", "r");
+
+	fa = fopen("replica.txt", "w");
+
+	while(fgets(str, 99, f) != NULL)
+	{
+
+		lineN++;
+
+		//aqui copio en replica solo las lineas que quiero
+		//if(lineN != idLine || lineN != idl1 || lineN != idl2 || lineN != idl3 || lineN != idl4)
+		//if(lineN != idLine)
+		if(lineN != idLine && lineN != idl1 && lineN != idl2 && lineN != idl3 && lineN != idl4)
+		{
+			
+			fputs(str, fa);
+		}
+	}
+
+	fclose(f);
+	fclose(fa);
+
+	remove("libros.txt");
+	rename("replica.txt", "libros.txt");
+
 }
+
+
+
+
 
 

@@ -147,7 +147,7 @@ int main(int argc, char **argv, char **vectorUsuarios)
 
 						case 3:
 
-							eliminarLibro();
+							eliminarLibro1();
 							break;
 							
 

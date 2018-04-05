@@ -13,6 +13,8 @@ void compararLibro();
 void comprobarCliente();
 void alquilarLibro();
 void listaLibrosAlquilados();
-void eliminarLibro();
+//void eliminarLibro();
+void eliminarLibro1();
+int lineofID();
 
 #endif
