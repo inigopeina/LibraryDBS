@@ -429,41 +429,6 @@ void nuevoLibro()
 	fclose(f);
   	
 }
-
-void alquilarLibro()
-{
-		char str[MAX_LENGHT];
-		char c[30];
-		
-		listaLibros();
-		do
-		{
-		printf("Introduzca el codigo del libro que desea alquilar: \n");
-		gets(c);
-
-	
-		if(strlen(c)==3)
-		{
-		
-			compararLibro(c);
-			listaLibrosAlquilados();
-
-	 
-	 	}
-	 	else
-	 	{
-	 		printf("Vuelva a intentarlo\n");
-	 		
-	 		
-	 	}
-		
-	
-	 }while(strlen(c)!=3);
-
-}
-
-
-
 int lineofID(char* c)
 {
 
@@ -540,6 +505,59 @@ int lineofID(char* c)
       	}
 
  }
+void modificarStock(int lineNo)
+{
+	FILE *f;
+	f = fopen("libros.txt", "r");
+
+	if(f==NULL)
+	{
+		printf("Archivo no encontrado\n");
+	}
+
+
+	lineNo=lineNo-1;
+
+	printf("El stock esta en la linea: %d\n",lineNo);
+
+
+	fclose(f);
+}
+void alquilarLibro()
+{
+		char str[MAX_LENGHT];
+		char c[30];
+		int lineNo;
+
+		listaLibros();
+		do
+		{
+		printf("Introduzca el codigo del libro que desea alquilar: \n");
+		gets(c);
+
+	
+		if(strlen(c)==3)
+		{
+		
+			lineNo=lineofID(c);
+			modificarStock(lineNo);
+			compararLibro(c);
+			listaLibrosAlquilados();
+
+	 
+	 	}
+	 	else
+	 	{
+	 		printf("Vuelva a intentarlo\n");
+	 		
+	 		
+	 	}
+		
+	
+	 }while(strlen(c)!=3);
+
+}
+
 
 
 //le tengo que pasar el numero
