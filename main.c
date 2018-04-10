@@ -52,7 +52,8 @@ int menuEmpleado(void)
 		printf("2. Lista de clientes de la biblioteca de Deusto\n");
 		printf("3. Introducir un nuevo cliente\n");
 		printf("4. Introducir un nuevo libro \n");
-		printf("5. \n");
+		printf("5. Eliminar un libro \n");
+		printf(" \n");
 		printf("6. EXIT\n");
 		printf("\n");
 		
@@ -114,6 +115,11 @@ int main(int argc, char **argv, char **vectorUsuarios)
 						nuevoLibro();
 						break;
 
+					case 5:
+
+						eliminarLibro();
+						break;
+
 					
 
 					default:
@@ -147,7 +153,7 @@ int main(int argc, char **argv, char **vectorUsuarios)
 
 						case 3:
 
-							eliminarLibro1();
+							eliminarLibro();
 							break;
 							
 

@@ -1,5 +1,0 @@
-Titulo: El niño con el pijama de rayas
-Autor: Prueba
-Genero: Prueba
-Stock: 5
-Codigo:124

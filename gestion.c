@@ -35,6 +35,7 @@ void listaLibros()
     	clear_if_needed(str); //siempre antes del siguiente fgets
  	}
 
+ 	fclose(f);
 }
 void listaLibrosReplica()
 {
@@ -110,6 +111,7 @@ void listaClientes()
     	clear_if_needed(str); //siempre antes del siguiente fgets
  	}
 
+ 	fclose(f);
 
 }
 void comprobarCliente(char* d)
@@ -460,56 +462,7 @@ void alquilarLibro()
 
 }
 
-/*void eliminarLibro()
-{
 
-			system("cls");
-            FILE *f, *fa;
-           	FILE *fileptr1, *fileptr2;
-		    char filename[40];
-		    char ch;
-		    int delete_line, temp = 1;
-            
-       		fileptr1=fopen("Libros.txt", "r");
-
-        	listaLibros();
-
-            char codigo[20];
-            printf("Intoduzca el codigo del libro:\n");
-            gets(codigo);
-            compararLibro(codigo);
-
-
-		    printf(" \n Enter line number of the line to be deleted:");
-		    scanf("%d", &delete_line);
-		    //open new file in write mode
-		    fileptr2 = fopen("replica.txt", "w");
-		    ch = 'A';
-		    while (ch != EOF)
-		    {
-		        ch = getc(fileptr1);
-		        //except the line to be deleted
-		        if (temp != delete_line)
-		        {
-		            //copy all lines in file replica.txt
-		            putc(ch, fileptr2);
-		        }
-		        if (ch == '\n')
-		        {
-		            temp++;
-		        }
-		    }
-		    fclose(fileptr1);
-		    fclose(fileptr2);
-		    remove(filename);
-		    //rename the file replica.c to original name
-		    rename("replica.txt", filename);
-		    listaLibrosReplica();
-		   	putc(ch, fileptr1);
-
-		    fclose(fileptr1);
-
-}*/
 
 int lineofID(char* c)
 {
@@ -573,6 +526,7 @@ int lineofID(char* c)
       	if(contador>0)
       	{
       		printf("Codigo correcto!\n");
+      		fclose(f);
       		return aux;
 
 	 		
@@ -580,6 +534,7 @@ int lineofID(char* c)
       	else
       	{
       		printf("Vuelva a intentarlo \n");
+	      	fclose(f);
 	      	gets(c);
 	      	lineofID(c);
       	}
@@ -588,7 +543,7 @@ int lineofID(char* c)
 
 
 //le tengo que pasar el numero
-void eliminarLibro1()
+void eliminarLibro()
 {
 
 
@@ -596,8 +551,10 @@ int idl1, idl2, idl3, idl4, idLine;
 
 
 	
-
+	char dirLib[] = "libros.txt";
+	char dirRep[] = "replica.txt";
 	int lineN = 0;
+	int ret = 0;
 	char str[100];
 	FILE *f, *fa;
 		char c[30];
@@ -656,9 +613,16 @@ int idl1, idl2, idl3, idl4, idLine;
 
 	fclose(f);
 	fclose(fa);
+	
+	ret = remove(dirLib);
 
-	remove("libros.txt");
-	rename("replica.txt", "libros.txt");
+   if(ret == 0) {
+      printf("Libro borrado con exito\n");
+   } else {
+   	  printf("%d\n",ret);
+      printf("El libro no se ha podido borrar\n");
+   }
+	rename(dirRep, dirLib);
 
 }
 
