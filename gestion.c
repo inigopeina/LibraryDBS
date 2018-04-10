@@ -358,7 +358,7 @@ void comprobarLibroExiste(char* c)
             }
       }
 
-     /* printf("La palabra se repite en el texto %d veces",konta);*/
+     
 
       if(contador>0)
       {
@@ -507,7 +507,9 @@ int lineofID(char* c)
  }
 void modificarStock(int lineNo)
 {
-	FILE *f;
+	FILE *f, *fa;
+	int idl1, idl2, idl3, idl4, idLine, lineSt, lineN=0;
+	char str[100];
 	f = fopen("libros.txt", "r");
 
 	if(f==NULL)
@@ -515,13 +517,34 @@ void modificarStock(int lineNo)
 		printf("Archivo no encontrado\n");
 	}
 
+	lineSt=lineNo-1; //Stock
 
-	lineNo=lineNo-1;
+	printf("El stock esta en la linea: %d\n",lineSt);
 
-	printf("El stock esta en la linea: %d\n",lineNo);
+	idLine = lineNo; //Codigo
+	idl1 = idLine-2; //Genero
+	idl2 = idLine-3; //Autor
+	idl3 = idLine-4; //Titulo
 
+	fa = fopen("replica.txt", "w");
+
+	while(fgets(str, 99, f) != NULL)
+	{
+
+		lineN++;
+		printf("%d\n",lineN );
+		//FALTA HACER ESTO!
+		if(lineN != idLine && lineN != idl1 && lineN != idl2 && lineN != idl3 && lineN != idl4)
+		{
+			
+			fputs(str, fa);
+		}
+
+		
+	}
 
 	fclose(f);
+	fclose(fa);
 }
 void alquilarLibro()
 {
@@ -558,16 +581,12 @@ void alquilarLibro()
 
 }
 
-
-
 //le tengo que pasar el numero
 void eliminarLibro()
 {
 
 
-int idl1, idl2, idl3, idl4, idLine;
-
-
+	int idl1, idl2, idl3, idl4, idLine;
 	
 	char dirLib[] = "libros.txt";
 	char dirRep[] = "replica.txt";
@@ -588,13 +607,11 @@ int idl1, idl2, idl3, idl4, idLine;
 		{
 		
 			idLine = lineofID(c);
-			
 	 
 	 	}
 	 	else
 	 	{
 	 		printf("Vuelva a intentarlo\n");
-	 		
 	 		
 	 	}
 		
