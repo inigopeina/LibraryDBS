@@ -120,7 +120,10 @@ int main(int argc, char **argv, char **vectorUsuarios)
 						eliminarLibro();
 						break;
 
-					
+					case 6: 
+
+						listaLibrosAlquilados();
+						break;
 
 					default:
 						return -1;

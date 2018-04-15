@@ -37,30 +37,7 @@ void listaLibros()
 
  	fclose(f);
 }
-void listaLibrosReplica()
-{
-	
-	FILE *f;
-	f = fopen("replica.txt", "r");
 
-	if(f==NULL)
-	{
-		printf("Archivo no encontrado\n");
-	}
-	
-	char str[70];
-  	int d;
-
-  	printf("LIBROS QUE QUEDAN: \n");
-  	while(fgets(str, 100, f)) 
-  	{ 
-  		//recorrer hasta que lea un 0
-      
-   		printf("%s", str);
-
-    	clear_if_needed(str); //siempre antes del siguiente fgets
- 	}
-}
 void listaLibrosAlquilados()
 {
 	FILE *f;
@@ -85,9 +62,7 @@ void listaLibrosAlquilados()
  	}
 
  	fclose(f);
-
 }
-
 void listaClientes()
 {
 	FILE *f;
@@ -112,9 +87,7 @@ void listaClientes()
  	}
 
  	fclose(f);
-
 }
-
 void comprobarCliente(char* d)
 {
 	FILE *f;
@@ -179,8 +152,6 @@ void comprobarCliente(char* d)
 
 
 	fclose(f);
-
-
 }
 void nuevoCliente()
 {
@@ -237,8 +208,7 @@ void nuevoCliente()
 	printf("El cliente ya ha sido añadido al sistema, gracias!!\n");
 	printf("\n");
 
-	fclose(f);
-  	
+	fclose(f);	
 }
 void compararCliente(char* c)
 {
@@ -474,7 +444,6 @@ void comprobarLibroExiste(char* c)
 
 
 	fclose(f);
-
 }
 void nuevoLibro()
 {
@@ -527,8 +496,7 @@ void nuevoLibro()
 	printf("El libro ya ha sido añadido al sistema, gracias!!\n");
 	printf("\n");
 
-	fclose(f);
-  	
+	fclose(f);	
 }
 int lineofID(char* c)
 {
@@ -682,7 +650,6 @@ int lineofIDC(char* c)
       	}
 
  }
-
 /*void modificarStock(int lineNo)
 {
 	FILE *f, *fa;
@@ -760,10 +727,7 @@ void alquilarLibro()
 		
 	
 	 }while(strlen(c)!=3);
-
 }
-
-//le tengo que pasar el numero
 void eliminarLibro()
 {
 
@@ -840,9 +804,7 @@ void eliminarLibro()
       printf("El libro no se ha podido borrar\n");
    }
 	rename(dirRep, dirLib);
-
 }
-
 void eliminarCliente()
 {
 
