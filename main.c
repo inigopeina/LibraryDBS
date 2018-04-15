@@ -64,7 +64,7 @@ int menuEmpleado(void)
 
 	}while ((len == 0 && str[0] != '7') || (len > 0 && (option > 7 || option < 1)));
 	
-	return (str[0] == '6')?0:option;
+	return (str[0] == '7')?0:option;
 
 }
 
