@@ -114,6 +114,7 @@ void listaClientes()
  	fclose(f);
 
 }
+
 void comprobarCliente(char* d)
 {
 	FILE *f;
@@ -208,10 +209,24 @@ void nuevoCliente()
 	gets(p);
 	fprintf(f, "Edad: %s\n", p);
 
-	printf("Introduzca el numero de DNI del cliente\n");
-	gets(p);
-	comprobarCliente(p);
-	fprintf(f, "DNI: %s\n", p);
+	
+	do
+	{
+
+		printf("Introduzca el numero de DNI del cliente\n");
+		gets(p);
+		
+		if(strlen(p)==9)
+		{
+			comprobarCliente(p);
+			fprintf(f, "DNI: %s\n",p);
+		}
+		else
+		{
+			printf("vuelva a intentarlo\n");
+		}	
+	}while(strlen(p)!=9);
+
 
 	printf("Introduzca el grado que cursa el cliente:\n");
 	gets(p);
@@ -225,6 +240,93 @@ void nuevoCliente()
 	fclose(f);
   	
 }
+void compararCliente(char* c)
+{
+
+	FILE *f;
+	f = fopen("clientes.txt", "r");
+
+	if(f==NULL)
+	{
+		printf("Archivo no encontrado\n");
+	}
+
+		
+	char str[70];
+  	int d;
+  	char libro[90];
+  	int i=0; int tmp1=0; int tmp2=0;
+  	int contador=0;
+  	int line=0;
+
+ 	char ch;
+  
+	while (feof(f)==0)
+
+      {
+            fgets(libro,100,f);
+            
+            for(i=0;i<strlen(libro);i++)
+
+            {
+
+             
+               if (c[0]==libro[i])
+
+               {
+
+                  tmp1=0;
+
+                  tmp2=i;
+
+                  while ((c[tmp1]==libro[tmp2])&&(tmp2<strlen(libro))&&(tmp1!=strlen(c)))
+
+                  {
+
+
+                        tmp1++;
+
+                        tmp2++;
+
+                     
+                      		if (tmp1==strlen(c))
+	                        {
+	                           contador=contador+1;
+	                          
+	                        }                 
+                  }
+               }
+            }
+      }
+
+     if(contador>0)
+      	{
+      		printf("DNI correcto!\n");
+
+      		FILE *f;
+
+			f = fopen("librosalquilados.txt", "a");
+
+			if(f==NULL)
+			{
+				printf("Archivo no encontrado\n");
+			}
+
+			fprintf(f, "DNi : %s\n", c);
+			fprintf(f,"_________________________" "\n" );
+			
+	 		fclose(f);
+
+	    }
+      	else
+      	{
+      		printf("Vuelva a intentarlo \n");
+	      	gets(c);
+	      	compararCliente(c);
+      	}
+
+      fclose(f);
+ }
 void compararLibro(char* c)
 {
 
@@ -373,7 +475,6 @@ void comprobarLibroExiste(char* c)
 
 	fclose(f);
 
-
 }
 void nuevoLibro()
 {
@@ -505,7 +606,84 @@ int lineofID(char* c)
       	}
 
  }
-void modificarStock(int lineNo)
+int lineofIDC(char* c)
+{
+
+	FILE *f;
+	f = fopen("clientes.txt", "r");
+
+	if(f==NULL)
+	{
+		printf("Archivo no encontrado\n");
+	}
+
+
+	char str[70];
+  	int d;
+  	char libro[90];
+  	int i=0; int tmp1=0; int tmp2=0;
+  	int contador=0;
+  	int lineNo = 0;
+  	int aux = 0;
+
+  
+	while (feof(f)==0)
+
+      {
+      	lineNo++;
+            fgets(libro,100,f);
+            
+            for(i=0;i<strlen(libro);i++)
+
+            {
+
+               if (c[0]==libro[i])
+
+               {
+
+                  tmp1=0;
+
+                  tmp2=i;
+
+                  while ((c[tmp1]==libro[tmp2])&&(tmp2<strlen(libro))&&(tmp1!=strlen(c)))
+
+                  {
+
+                        tmp1++;
+
+                        tmp2++;
+
+
+                        if (tmp1==strlen(c))
+                        {
+                           contador=contador+1;
+                           aux = lineNo;
+                        }
+                  }
+               }
+            }
+      }
+
+
+      	if(contador>0)
+      	{
+      		printf("Codigo correcto!\n");
+      		fclose(f);
+      		return aux;
+
+	 		
+	    }
+      	else
+      	{
+      		printf("Vuelva a intentarlo \n");
+	      	fclose(f);
+	      	gets(c);
+	      	lineofIDC(c);
+      	}
+
+ }
+
+/*void modificarStock(int lineNo)
 {
 	FILE *f, *fa;
 	int idl1, idl2, idl3, idl4, idLine, lineSt, lineN=0;
@@ -545,11 +723,12 @@ void modificarStock(int lineNo)
 
 	fclose(f);
 	fclose(fa);
-}
+}*/
 void alquilarLibro()
 {
 		char str[MAX_LENGHT];
 		char c[30];
+		char u[30];
 		int lineNo;
 
 		listaLibros();
@@ -562,9 +741,12 @@ void alquilarLibro()
 		if(strlen(c)==3)
 		{
 		
-			lineNo=lineofID(c);
-			modificarStock(lineNo);
 			compararLibro(c);
+			printf("Introduzca su DNi de usuario: \n");
+			gets(u);
+			
+			compararCliente(u);
+
 			listaLibrosAlquilados();
 
 	 
@@ -661,6 +843,85 @@ void eliminarLibro()
 
 }
 
+void eliminarCliente()
+{
+
+
+	int idl1, idl2, idl3, idl4, idLine;
+	
+	char dirLib[] = "clientes.txt";
+	char dirRep[] = "replica.txt";
+	int lineN = 0;
+	int ret = 0;
+	char str[100];
+	FILE *f, *fa;
+		char c[30];
+		
+		listaClientes();
+		do
+		{
+		printf("Introduzca su DNi  : \n");
+		gets(c);
+
+	
+		if(strlen(c)==9)
+		{
+		
+			idLine = lineofIDC(c);
+	 
+	 	}
+	 	else
+	 	{
+	 		printf("Vuelva a intentarlo\n");
+	 		
+	 	}
+		
+	
+	 }while(strlen(c)!=9);
+
+	 
+
+	idl1 = idLine-1;
+	idl2 = idLine-2;
+	idl3 = idLine-3;
+	idl4 = idLine-4;
+	
+	
+	
+	f = fopen("clientes.txt", "r");
+
+	fa = fopen("replica.txt", "w");
+
+	while(fgets(str, 99, f) != NULL)
+	{
+
+		lineN++;
+
+		//aqui copio en replica solo las lineas que quiero
+		//if(lineN != idLine || lineN != idl1 || lineN != idl2 || lineN != idl3 || lineN != idl4)
+		//if(lineN != idLine)
+		if(lineN != idLine && lineN != idl1 && lineN != idl2 && lineN != idl3 && lineN != idl4)
+		{
+			
+			fputs(str, fa);
+		}
+	}
+
+	fclose(f);
+	fclose(fa);
+	
+	ret = remove(dirLib);
+
+   if(ret == 0) {
+      printf("Se ha dado de baja con exito\n");
+      printf("ADIOS!\n");
+   } else {
+   	  printf("%d\n",ret);
+      printf("NO se ha podido darle de baja\n");
+   }
+	rename(dirRep, dirLib);
+
+}
 
 
 

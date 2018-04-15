@@ -20,6 +20,7 @@ int menuUsuario(void)
 		
 		printf("1. Lista de libros disponibles para alquilar\n");
 		printf("2. Alquilar libro\n");
+		printf("3. Darse de baja de la aplicacion\n");
 		printf("4. EXIT\n");
 		printf("\n");
 		
@@ -52,8 +53,8 @@ int menuEmpleado(void)
 		printf("3. Introducir un nuevo cliente\n");
 		printf("4. Introducir un nuevo libro \n");
 		printf("5. Eliminar un libro \n");
-		printf(" \n");
-		printf("6. EXIT\n");
+		printf("6. Lista de libros alquilados\n");
+		printf("7. EXIT\n");
 		printf("\n");
 		
 		fgets(str, 50, stdin);
@@ -61,7 +62,7 @@ int menuEmpleado(void)
 		len = sscanf(str, "%d", &option); 
 		printf("\n");
 
-	}while ((len == 0 && str[0] != '6') || (len > 0 && (option > 6 || option < 1)));
+	}while ((len == 0 && str[0] != '7') || (len > 0 && (option > 7 || option < 1)));
 	
 	return (str[0] == '6')?0:option;
 
@@ -78,7 +79,7 @@ int main(int argc, char **argv, char **vectorUsuarios)
 	do
 	{
 	 printf("\n\n\n\nBIENVENIDO A LA BIBLIOTECA DE DEUSTO\n");
-	 printf("Escriba el nombre de usuario por favor\n");
+	 printf("Escriba el nombre de usuario por favor (usuario - empleado)\n");
 	 gets(n);
 	 printf("Escriba su contrasena\n");
 	 gets(c);
@@ -150,7 +151,10 @@ int main(int argc, char **argv, char **vectorUsuarios)
 							alquilarLibro();
 							break;
 
-					
+						case 3:
+
+							eliminarCliente();
+							break;					
 							
 
 						default:

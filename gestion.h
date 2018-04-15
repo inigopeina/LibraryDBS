@@ -15,6 +15,6 @@ void alquilarLibro();
 void listaLibrosAlquilados();
 void eliminarLibro();
 int lineofID();
-void modificarStock();
+void eliminarCliente();
 
 #endif

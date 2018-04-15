@@ -1,21 +1,6 @@
-Codigo del libro: 123
-Codigo del libro: 123
-Codigo del libro: 123
-Codigo del libro: 124
-Codigo del libro: 124
-Codigo del libro: d
-Codigo del libro: 123
-Codigo del libro: 123
-Codigo del libro: 124
-Codigo del libro: 123
+Codigo del libro: 125
+DNi : 72544122Y
+_________________________
 Codigo del libro: 126
-Codigo del libro: 126
-Codigo del libro: 124
-Codigo del libro: 124
-Codigo del libro: 124
-Codigo del libro: 124
-Codigo del libro: 124
-Codigo del libro: 125
-Codigo del libro: 125
-Codigo del libro: 125
-Codigo del libro: 125
+DNi : 72544122Y
+_________________________
